@@ -67,6 +67,22 @@ int agregarEnlace(Red *red, int i, int j, int costo){
 
 }
 
+int  eliminarEnlace(Red *red, int i, int j){
+    if (red == NULL || i < 0 ||i > red->numRouters || j < 0 || j > red->numRouters || i == j){
+        return -1;
+    }
+
+    //Valir que exista el enlace
+    if(red->matriz[i][j] == INF){
+        return -1;
+    }
+
+    red->matriz[i][j] = INF;
+    red->matriz[j][i] = INF;
+    
+    return 0;
+}
+
 int main (){
     Red red;
     int cantRouters = 3;
