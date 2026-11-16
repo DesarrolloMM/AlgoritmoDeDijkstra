@@ -44,6 +44,29 @@ int setNombreRouter (Red *red, int idx, const char *nombre){
     return 0;
 }
 
+/*
+@brief Agrega un enlace biridireccional con costo
+*/
+int agregarEnlace(Red *red, int i, int j, int costo){
+    if (red == NULL || i < 0 ||i > red->numRouters || j < 0 || j > red->numRouters){
+        return -1;
+    }
+    if( i == j || costo <=0){
+        return -1;
+    }
+
+    //Validar si el enlace ya existe
+    if( red->matriz[i][j] != INF){
+        return -1;
+    }
+
+    red->matriz[i][j] = costo;
+    red->matriz[j][i] = costo;
+
+    return 0;
+
+}
+
 int main (){
     Red red;
     int cantRouters = 3;
@@ -79,13 +102,26 @@ int main (){
     
 
     printf("\n[Test 2] Asignando nombres personalizados...\n");
-     setNombreRouter(&red, 0, "Router_A");
-     setNombreRouter(&red, 1, "Router_B");
-     setNombreRouter(&red, 2, "Router_C");
+    setNombreRouter(&red, 0, "Router_A");
+    setNombreRouter(&red, 1, "Router_B");
+    setNombreRouter(&red, 2, "Router_C");
 
-      for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {
         printf("%s", red.nombres[i]);
         printf("\n");
-      }
+    }
+
+    printf("Probando funcion agregarEnlace\n");
+    agregarEnlace(&red, 0,1,10);
+    agregarEnlace(&red, 1,2,20);
+
+
+    if(agregarEnlace(&red, 0,1,12) == -1){
+        printf("Validacion correcta, enlace duplicado\n");
+    }
+
+    if(agregarEnlace(&red, 0,2,-5) == -1){
+        printf("Validación correcta: Costo negativo\n");   
+    }
     return EXIT_SUCCESS;
 }
