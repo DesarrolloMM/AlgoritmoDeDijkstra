@@ -4,7 +4,7 @@
 #include <string.h>
 
 /*
-@brief Inicializamos la red con una cantidad de routers y sin enlaces directos
+@brief Inicializa la red con una cantidad N de routers y sin enlaces.
 */
 
 int inicializarRed(Red *red, int cantRouter){
@@ -27,31 +27,65 @@ int inicializarRed(Red *red, int cantRouter){
         }
 
     }
-    return EXIT_SUCCESS;
+    return 0;
+}
+
+/*
+@brief Asigna un nombnre legible a un router
+*/
+
+int setNombreRouter (Red *red, int idx, const char *nombre){
+    if(red == NULL || nombre == NULL || idx < 0 || idx >= red->numRouters){
+        return -1;
+    }
+    else{
+        strncpy(red->nombres[idx], nombre, MAX_NOMBRE -1);
+    }
+    return 0;
 }
 
 int main (){
     Red red;
+    int cantRouters = 3;
+    int filas = cantRouters;
+    int columnas = cantRouters;
     
     printf ("Testing inicialización con 3 routers\n");
 
-    if(inicializarRed(&red, 3) == EXIT_SUCCESS){
+    if(inicializarRed(&red, cantRouters) == 0){
     
         printf(" -&gt; OK. Routers inicializados: %d\n", red.numRouters); 
-    
-        int filas = 3;
-        int columnas = 3;
+
+       
+
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 printf("%d ", red.matriz[i][j]); 
             }
             printf("\n");
         }
+
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    printf("%c", red.nombres[i][j]); 
+                }
+            printf("\n");
+        }    
     }
     
     else { 
-        printf(" -&gt; ERROR en inicializarRed\\n"); 
+        printf(" -&gt; ERROR en inicializarRed\n"); 
     }
     
+
+    printf("\n[Test 2] Asignando nombres personalizados...\n");
+     setNombreRouter(&red, 0, "Router_A");
+     setNombreRouter(&red, 1, "Router_B");
+     setNombreRouter(&red, 2, "Router_C");
+
+      for (int i = 0; i < 3; i++) {
+        printf("%s", red.nombres[i]);
+        printf("\n");
+      }
     return EXIT_SUCCESS;
 }
