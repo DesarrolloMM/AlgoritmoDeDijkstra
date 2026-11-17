@@ -96,7 +96,7 @@ int  eliminarEnlace(Red *red, int i, int j){
 int  cargarTopologiaDesdeArchivo(Red *red, const char *ruta){
     
     FILE *archivo;
-    char linea[MAX_LINEA] = 0;
+    char linea[MAX_LINEA];
     int redInicializada = 0;
     char clave [MAX_LINEA];
     int i,j,costo;
@@ -171,61 +171,48 @@ int  cargarTopologiaEjemplo(Red *red){
     return 0;
 }
 
-int main (){
-    Red red;
-    int cantRouters = 3;
-    int filas = cantRouters;
-    int columnas = cantRouters;
+
+/*
+@brief Muestra la matríz de adyacencia
+*/
+void mostrarTopologia(const Red *red){
     
-    printf ("Testing inicialización con 3 routers\n");
+    if(red == NULL || red->numRouters == 0){
+        printf("La red no esta inicializada\n");        
+        return;
+    }
 
-    if(inicializarRed(&red, cantRouters) == 0){
+    printf("Matríz de adyacencia\n");
+    printf("Nro. de routers: %d\n", red->numRouters);
     
-        printf(" -&gt; OK. Routers inicializados: %d\n", red.numRouters); 
-
-       
-
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                printf("%d ", red.matriz[i][j]); 
+    for (int i = 0; i < red->numRouters; i++)
+    {
+        printf("%8s", red->nombres[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < red->numRouters; i++)
+    {
+        printf("%10s",red->nombres[i]);
+        for (int j = 0; j < red->numRouters; j++)
+        {
+            if(red->matriz[i][j] == INF){
+                printf("%8s", "INF");
             }
-            printf("\n");
+            else{
+                printf("%8d", red->matriz[i][j]);
+            }
         }
-
-            for (int i = 0; i < filas; i++) {
-                for (int j = 0; j < columnas; j++) {
-                    printf("%c", red.nombres[i][j]); 
-                }
-            printf("\n");
-        }    
+        printf("\n");        
     }
-    
-    else { 
-        printf(" -&gt; ERROR en inicializarRed\n"); 
+    printf("\n");
+}
+
+/*
+@brief Libera recursos
+*/
+void liberarRed(Red *red){
+    if (red != NULL)
+    {
+        red->numRouters = 0;
     }
-    
-
-    printf("\n[Test 2] Asignando nombres personalizados...\n");
-    setNombreRouter(&red, 0, "Router_A");
-    setNombreRouter(&red, 1, "Router_B");
-    setNombreRouter(&red, 2, "Router_C");
-
-    for (int i = 0; i < 3; i++) {
-        printf("%s", red.nombres[i]);
-        printf("\n");
-    }
-
-    printf("Probando funcion agregarEnlace\n");
-    agregarEnlace(&red, 0,1,10);
-    agregarEnlace(&red, 1,2,20);
-
-
-    if(agregarEnlace(&red, 0,1,12) == -1){
-        printf("Validacion correcta, enlace duplicado\n");
-    }
-
-    if(agregarEnlace(&red, 0,2,-5) == -1){
-        printf("Validación correcta: Costo negativo\n");   
-    }
-    return EXIT_SUCCESS;
 }

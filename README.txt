@@ -18,7 +18,7 @@ setNombreRouter() y agregarEnlace(): asignan nombres y cargan los costos de los 
 mostrarTopologia(): imprime la matriz formateada en consola.
 
 Fase 2:
-El núcleo algorítmico (dijkstra.h / dijkstra.c)Con el grafo funcionando en memoria, cálculo del camino máscorto.
+El núcleo algorítmico (dijkstra.h / dijkstra.c) Con el grafo funcionando en memoria, cálculo del camino máscorto.
 Variables de estado: Crear la estructura ResultadoDijkstra con los arreglos distancia[], predecesor[] y visitado[].
 Implementación del bucle: Inicializar el nodo origen con distancia[origen] = 0 y los demás en INF.
 En cada iteración, seleccionar el nodo no visitado con la menor distancia acumulada.
