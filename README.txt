@@ -2,7 +2,7 @@
 Se utiliza Notebook LM para planeamiento de fases, ejemplos y solucion de dudas,
 además de busquedas en la web y el motor google, que utiliza IA. 
 
-
+Se utiliza copilot para revision de comentarios, sugrencias de código y correccion de errores
 
 ---------------Fases---------------
 
