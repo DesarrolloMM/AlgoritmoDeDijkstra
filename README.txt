@@ -2,7 +2,7 @@
 Se utiliza Notebook LM para planeamiento de fases, ejemplos y solucion de dudas,
 además de busquedas en la web y el motor google, que utiliza IA. 
 
-
+Se utiliza copilot para revision de comentarios, sugrencias de código y correccion de errores
 
 ---------------Fases---------------
 
@@ -18,7 +18,7 @@ setNombreRouter() y agregarEnlace(): asignan nombres y cargan los costos de los 
 mostrarTopologia(): imprime la matriz formateada en consola.
 
 Fase 2:
-El núcleo algorítmico (dijkstra.h / dijkstra.c)Con el grafo funcionando en memoria, cálculo del camino máscorto.
+El núcleo algorítmico (dijkstra.h / dijkstra.c) Con el grafo funcionando en memoria, cálculo del camino máscorto.
 Variables de estado: Crear la estructura ResultadoDijkstra con los arreglos distancia[], predecesor[] y visitado[].
 Implementación del bucle: Inicializar el nodo origen con distancia[origen] = 0 y los demás en INF.
 En cada iteración, seleccionar el nodo no visitado con la menor distancia acumulada.
