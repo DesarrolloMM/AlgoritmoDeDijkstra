@@ -55,12 +55,12 @@ void mostrarTablaRutas(const Red *red, const EntradaRuta *tabla){
     }
 
     printf("Tabla de enrutamiento\n");
-    printf ("%-12s %-10d %-15s\n", "Destino", "Costo", "Siguiente Salto");
+    printf ("%-12s %-10s %-15s\n", "Destino", "Costo", "Siguiente Salto");
     
     for (int i = 0; i < red->numRouters ; i++)
     {
         if(tabla[i].costo == INF){
-            printf("%-12s %-10d %-15s\n", red->nombres[i], "INF", "Sin ruta");
+            printf("%-12s %-10s %-15s\n", red->nombres[i], "INF", "Sin ruta");
         }
         else if(tabla[i].costo == 0){
             printf("%-12s %-10d %-15s\n" ,red->nombres[i], 0, "Local");
