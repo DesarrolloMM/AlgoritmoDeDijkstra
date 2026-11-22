@@ -1,0 +1,4 @@
+*.o
+*.out
+.directory
+simulador_rutas
