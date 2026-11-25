@@ -18,6 +18,7 @@ Funciones mínimas: Implementar en grafo.c:
 inicializarRed(): llena la matriz poniendo 0 en la diagonal principal y INF en el resto.
 setNombreRouter() y agregarEnlace(): asignan nombres y cargan los costos de los enlaces.
 mostrarTopologia(): imprime la matriz formateada en consola.
+Horas: 4
 
 Fase 2:
 El núcleo algorítmico (dijkstra.h / dijkstra.c) Con el grafo funcionando en memoria, cálculo del camino más corto.
@@ -25,18 +26,22 @@ Variables de estado: Crear la estructura ResultadoDijkstra con los arreglos dist
 Implementación del bucle: Inicializar el nodo origen con distancia[origen] = 0 y los demás en INF.
 En cada iteración, seleccionar el nodo no visitado con la menor distancia acumulada.
 Comparar si los resultados coinciden con la tabla teórica dada en el proyecto.
+Horas: 2
 
 Fase 3:
 Tabla de enrutamiento y reconstrucción de rutas (enrutamiento.h / enrutamiento.c) Una vez que predecesor[] se calcula correctamente, transformar esos datos abstractos en información útil de red.
 Lógica del Next Hop (Siguiente salto): Para encontrar por qué vecino debe salir un paquete hacia un destino, retroceder siguiendo los valores de predecesor[] desde  "d" hasta hallar el nodo cuyo predecesor directo sea
 el origen. Ese nodo es el next hop.
 Simulación de paquetes: Recorrer la cadena de predecesores desde el destino hasta el origen, invertir la secuencia e imprimir por pantalla para mostrar el trayecto completo del paquete.
+Horas: 3
 
 Fase 4: 
 Lectura del archivo de topología (grafo.c). Abrir el archivo topologia.txt usando fopen() y leer línea por línea.
 Analizar el contenido para identificar las palabras clave (ROUTERS, NOMBRE, ENLACE) y llamar a las funciones setNombreRouter(), agregarEnlace().
+Horas: 2
 
 Fase 5:
 Menú interactivo, pruebas y Valgrind (main.c, tests.c, Makefile)Batería de tests: Integrr las pruebas unitarias proporcionadas.
 Menú de usuario: Construye la interfaz por consola mediante un bucle switch.
 Control de memoria: Compilar con las opciones estrictas de GCC (-Wall -Wextra -Werror -std=c11 -g -O0) y ejecutar valgrind --leak-check=full para verificar la ausencia de fugas de memoria
+Horas: 2
